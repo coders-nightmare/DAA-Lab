@@ -17,6 +17,6 @@ int main()
     }
     printf("Sorted list :\n");
     for (i = 0; i <= len - 1; i++)
-        printf("%d", arr[i]);
+        printf("%d ", arr[i]);
     return 0;
 }

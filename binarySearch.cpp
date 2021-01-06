@@ -1,23 +1,28 @@
-#include<stdio.h>
-int main() {
-    int mid, end, beg, i, len, item;
-    int arr[]={ 2, 5, 8, 9, 34, 76 };
-    len=sizeof(arr)/sizeof(int);
-    beg=0;
-    end=len-1;
-    mid=(beg+end)/2;
-    printf("enter item to search :");
-    scanf(" %d", &item);
-    while (item != arr[mid] && beg<end) {
-        if (item<arr[mid])
-            end=mid-1;
-        else
-            beg=mid+1;
-        mid=(beg+end)/2;
+#include <iostream>
+using namespace std;
+int binarySearch(int arr[], int l, int r, int x)
+{
+    if (r >= l)
+    {
+        int mid = l + (r - l) / 2;
+        if (arr[mid] == x)
+            return mid;
+        if (arr[mid] > x)
+            return binarySearch(arr, l, mid - 1, x);
+        return binarySearch(arr, mid + 1, r, x);
     }
-    if (item==arr[mid])
-        printf("element found at index :%d", mid);
-    else
-        printf("Element not found");
+    return -1;
+}
+
+int main(void)
+{
+    int arr[] = {2, 3, 4, 10, 40};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int x;
+    cout << "Enter Element: ";
+    cin >> x;
+    int result = binarySearch(arr, 0, n - 1, x);
+    (result == -1) ? printf("Element is not present in array")
+                   : printf("Element is present at index %d", result);
     return 0;
 }

@@ -1,19 +1,31 @@
-#include<stdio.h>
-int main() {
-    int item, i, len, t=0;
-    int arr[]={ 1, 2, 5, 3, 8 };
-    printf("enter element to search:");
-    scanf(" %d", &item);
-    len=sizeof(arr)/sizeof(int);
-    for (i=0;i<len;i++) {
-        if (arr[i]==item) {
-            printf("element found at index :%d", i);
-            t=1;
-            break;
-        }
-    }
-    if (t==0) {
-        printf("element not found");
-    }
+#include <bits/stdc++.h>
+using namespace std;
+int recSearch(int arr[], int l,
+              int r, int x)
+{
+    if (r < l)
+        return -1;
+    if (arr[l] == x)
+        return l;
+    if (arr[r] == x)
+        return r;
+    return recSearch(arr, l + 1,
+                     r - 1, x);
+}
+int main()
+{
+    int arr[] = {2, 4, 6, 1, 8}, i;
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int x;
+    cout << "Enter Element: ";
+    cin >> x;
+    int index = recSearch(arr, 0, n - 1, x);
+    if (index != -1)
+        cout << "Element " << x
+             << " is present at index "
+             << index;
+    else
+        cout << "Element " << x
+             << " is not present";
     return 0;
 }
